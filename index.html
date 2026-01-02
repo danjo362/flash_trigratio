@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="utf-8">
+<title>Flash 三角比</title>
+</head>
+<body>
+
+<h1>Flash 三角比</h1>
+
+<p>
+<ul style="list-style:none">
+<li><!--
+--><img src="0d_90d.png"><br><!--
+--><input type="button" value="Start" style="width:120px; height:40px; font-size:20px" onclick="init1(); location.href='main_1.html'"><!--
+--></li>
+<li style="padding-top:20px"><!--
+--><img src="0d_180d.png"><br><!--
+--><input type="button" value="Start" style="width:120px; height:40px; font-size:20px" onclick="init2(); location.href='main_2.html'"><!--
+--></li>
+</ul>
+</p>
+
+<script>
+
+function init1() {
+sessionStorage.setItem('saveqcnt_ratio1', 0);
+sessionStorage.setItem('savercnt_ratio1', 0);
+sessionStorage.setItem('saveseqstr_ratio1', "[]");
+};
+
+function init2() {
+sessionStorage.setItem('saveqcnt_ratio2', 0);
+sessionStorage.setItem('savercnt_ratio2', 0);
+sessionStorage.setItem('saveseqstr_ratio2', "[]");
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="utf-8">
+<title>Flash 三角比</title>
+<script>
+
+var arr = [
+['c_0d', '1'],
+['c_30d', 'r3o2'],
+['c_45d', '1or2'],
+['c_60d', '1o2'],
+['c_90d', '0'],
+['s_0d', '0'],
+['s_30d', '1o2'],
+['s_45d', '1or2'],
+['s_60d', 'r3o2'],
+['s_90d', '1'],
+['t_0d', '0'],
+['t_30d', '1or3'],
+['t_45d', '1'],
+['t_60d', 'r3'],
+['t_90d', 'undef']
+];
+var arrlen = arr.length;
+
+var qcnt = sessionStorage.getItem('saveqcnt_ratio1');
+var rcnt = sessionStorage.getItem('savercnt_ratio1');
+var seq = JSON.parse(sessionStorage.getItem('saveseqstr_ratio1'));
+
+var r;
+if (qcnt % arrlen == 0) {
+qcnt = 0;
+if (rcnt < 100) {rcnt++} else {rcnt = 1};
+seq = [];
+for (i=1; i<=arrlen; i++) {
+while (true) {
+r = Math.floor(Math.random() * arrlen);
+if (!seq.includes(r)) {seq.push(r); break};
+};
+};
+};
+qcnt++;
+
+var proc;
+window.onload = function() {
+proc = setInterval("cntup()", 1000);
+};
+var sec = 0;
+function cntup() {
+sec++;
+document.getElementById('timer').textContent = sec;
+if (sec >= 60) {
+clearInterval(proc);
+};
+};
+
+</script>
+</head>
+<body>
+
+<p>
+<span style="font-size:30px; color:blue">Round <!--
+--><span id="rcntdisp"></span>&ensp;(<!--
+--><span id="qcntdisp"></span>/<!--
+--><span id="arrlendisp"></span>)<!--
+--></span><!--
+--><span id="timer" style="font-size:30px; color:blue; margin-left:40px">0</span>
+</p>
+
+<p>
+<img id="qimg" style="margin-top:20px">
+</p>
+
+<p>
+<input type="button" value="Answer" style="width:120px; height:40px; font-size:20px" onclick="document.getElementById('aimg').style.display='block'"><!--
+--><input type="button" value="Next" style="width:120px; height:40px; font-size:20px; margin-left:15px" onclick="location.reload()">
+</p>
+
+<p>
+<img id="aimg" style="display:none">
+</p>
+
+<script>
+
+document.getElementById('qimg').src = arr[seq[qcnt-1]][0] + ".png";
+document.getElementById('aimg').src = arr[seq[qcnt-1]][1] + ".png";
+
+document.getElementById('rcntdisp').textContent = rcnt;
+document.getElementById('qcntdisp').textContent = qcnt;
+document.getElementById('arrlendisp').textContent = arrlen;
+
+sessionStorage.setItem('saveqcnt_ratio1', qcnt);
+sessionStorage.setItem('savercnt_ratio1', rcnt);
+sessionStorage.setItem('saveseqstr_ratio1', JSON.stringify(seq));
+
+</script>
+
+</body>
+</html>
